@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Flip a Coin</title>
+  <script
+    src="https://unpkg.com/vue@3.2.29/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Flip a Coin</h1>
+    
+    <!-- Display the current state of the coin -->
+    <p>{{ message }}</p>
+    <!-- When button is clicked something needs to happen -->
+    <button @click="flipCoin">Flip!</button>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      // Data need to hold the result of flipping
+      data() {
+        return {
+          result: null
+        };
+      },
+      // Calculate the message based on the result, 
+      // and give some initial message before the 1st flip
+      computed: {
+        message() {
+          if (this.result === null) {
+            return 'Click the button to flip the coin!';
+          } else if (this.result === 0) {
+            return 'Heads!';
+          } else {
+            return 'Tails!';
+          }
+        }
+      },
+      // The actual flip logic happens here
+      // Look for random number generation
+      methods: {
+        flipCoin() {
+          this.result = Math.floor(Math.random() * 2);
+        }
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+
+</html>
